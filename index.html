@@ -1,17 +1,96 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>AI Video Clip Generator</title>
-</head>
-<body>
+<!DOCTYPE html>  <html lang="en">  
+<head>  
+    <meta charset="UTF-8">  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <title>AI Video Clip Generator</title>  
+    <link rel="stylesheet" href="style.css">  
+</head>  
+<body>  
+    <div class="container">  
+        <div class="header">  
+            <h1>🎬 AI Video Clip Generator</h1>  
+            <p class="subtitle">Split videos into clips directly in your browser</p>  
+        </div>  <div class="content">  
+        <!-- Upload Section -->  
+        <div class="section">  
+            <h2>Step 1: Upload Video</h2>  
+            <div class="upload-area" id="uploadArea">  
+                <input type="file" id="videoFile" accept="video/*" hidden>  
+                <div class="upload-placeholder">  
+                    <span class="upload-icon">📹</span>  
+                    <p>Click to upload or drag & drop</p>  
+                    <small>Supported: MP4, WebM, MOV (Max 500MB)</small>  
+                </div>  
+            </div>  
+            <div id="fileInfo" class="file-info hidden"></div>  
+        </div>  
 
-    <h1>AI Video Clip Generator</h1>
+        <!-- Settings Section -->  
+        <div class="section hidden" id="settingsSection">  
+            <h2>Step 2: Configure Clips</h2>  
+              
+            <div class="form-group">  
+                <label for="clipLength">Clip Length</label>  
+                <div class="radio-group">  
+                    <label class="radio-label">  
+                        <input type="radio" name="clipLength" value="15" checked>  
+                        <span>15 seconds</span>  
+                    </label>  
+                    <label class="radio-label">  
+                        <input type="radio" name="clipLength" value="30">  
+                        <span>30 seconds</span>  
+                    </label>  
+                </div>  
+            </div>  
 
-    <input type="file" accept="video/*">
+            <div class="form-group">  
+                <label for="clipOverlap">Overlap (seconds)</label>  
+                <input type="number" id="clipOverlap" min="0" max="10" value="2">  
+                <small>Overlap between consecutive clips to capture transitions</small>  
+            </div>  
 
-    <br><br>
+            <button id="generateBtn" class="btn btn-primary" onclick="generateClips()">  
+                Generate Clips  
+            </button>  
+            <button id="resetBtn" class="btn btn-secondary" onclick="resetApp()">  
+                Upload Different Video  
+            </button>  
+        </div>  
 
-    <button>Generate Clips</button>
+        <!-- Loading Section -->  
+        <div class="section hidden" id="loadingSection">  
+            <div class="loader"></div>  
+            <p id="loadingText">Processing video...</p>  
+            <div id="progressBar" class="progress-bar">  
+                <div id="progressFill" class="progress-fill"></div>  
+            </div>  
+            <p id="progressText" class="progress-text">0%</p>  
+        </div>  
 
-</body>
-</html>
+        <!-- Results Section -->  
+        <div class="section hidden" id="resultsSection">  
+            <h2>Step 3: Download Clips</h2>  
+            <p class="clips-info">Generated <span id="clipCount">0</span> clips</p>  
+            <div id="clipsList" class="clips-list"></div>  
+            <button onclick="resetApp()" class="btn btn-secondary">Process Another Video</button>  
+        </div>  
+
+        <!-- Error Section -->  
+        <div class="section hidden" id="errorSection">  
+            <div class="error-box">  
+                <p id="errorMessage"></p>  
+                <button onclick="resetApp()" class="btn btn-secondary">Try Again</button>  
+            </div>  
+        </div>  
+    </div>  
+
+    <div class="footer">  
+        <p>✨ Powered by FFmpeg.wasm - All processing happens in your browser</p>  
+    </div>  
+</div>  
+
+<script async src="https://cdn.jsdelivr.net/npm/@ffmpeg/ffmpeg@0.12.10/dist/ffmpeg.min.js"></script>  
+<script src="script.js"></script>
+
+</body>  
+</html>  Mera pahla card
